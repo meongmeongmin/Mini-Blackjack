@@ -1,0 +1,4 @@
+repository "Mini Blackjack@MeongMeongMin@cloud"
+  path "/"
+    br "/main"
+    co "/main"
