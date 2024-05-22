@@ -12,6 +12,11 @@ public class Managers : MonoBehaviour
     GameManager _game = new GameManager();
     public static GameManager Game { get { return Instance?._game; } }
 
+    ResourceManager _resource = new ResourceManager();
+    public static ResourceManager Resource { get { return Instance?._resource; } }
+    PoolManager _pool = new PoolManager();
+    public static PoolManager Pool { get { return Instance?._pool; } }
+
     static void Init()
     {
         if (s_init == false)

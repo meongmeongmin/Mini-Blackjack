@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class UI_MenuScene : MonoBehaviour
 {
+    bool isPreload = false;
+
+    void Awake()
+    {
+        Managers.Resource.LoadAllAsync<Object>("PreLoad", (key, count, totalCount) =>
+        {
+            if (count == totalCount)
+                isPreload = true;
+        });
+    }
+
     public void OnClickStartButton()
     {
         SceneManager.LoadScene("GameScene");

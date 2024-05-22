@@ -72,10 +72,17 @@ public class UI_GameScene : MonoBehaviour
     void InstantiateCard(GameObject prefab, Transform parent, Card card, bool hidden)
     {
         if (hidden)
-            HiddenCard = UnityEngine.Object.Instantiate(prefab, parent);
+        {
+            // HiddenCard = UnityEngine.Object.Instantiate(prefab, parent);
+            HiddenCard = Managers.Pool.Pop(prefab);
+            HiddenCard.transform.SetParent(parent);
+            HiddenCard.transform.localScale = Vector3.one;
+        }
         else
         {
-            GameObject go = UnityEngine.Object.Instantiate(prefab, parent);
+            // GameObject go = UnityEngine.Object.Instantiate(prefab, parent);
+            GameObject go = Managers.Pool.Pop(prefab);
+            go.transform.SetParent(parent);
             UI_Card uc = go.GetOrAddComponent<UI_Card>();
             uc.SetInfo(card);
         }
@@ -83,19 +90,23 @@ public class UI_GameScene : MonoBehaviour
 
     void HandleCardCalled(Card card, Define.Role role, bool hidden = false)
     {
-        #region 어드레서블 에셋 로드
-        Addressables.LoadAssetAsync<GameObject>("Card").Completed += handle =>
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                Transform parent = role == Define.Role.Player ? Player : Dealer;
-                if (handle.Result == null || parent == null)
-                    return;
+        //#region 어드레서블 에셋 로드
+        //Addressables.LoadAssetAsync<GameObject>("Card").Completed += handle =>
+        //{
+        //    if (handle.Status == AsyncOperationStatus.Succeeded)
+        //    {
+        //        Transform parent = role == Define.Role.Player ? Player : Dealer;
+        //        if (handle.Result == null || parent == null)
+        //            return;
 
-                InstantiateCard(handle.Result, parent, card, hidden);
-            }
-        };
-        #endregion
+        //        InstantiateCard(handle.Result, parent, card, hidden);
+        //    }
+        //};
+        //#endregion
+        GameObject go = Managers.Resource.Load<GameObject>("Card");
+        Transform parent = role == Define.Role.Player ? Player : Dealer;
+        if (go != null && parent != null)
+            InstantiateCard(go, parent, card, hidden);
     }
 
     void HandleHiddenCardOpened(Card card)
