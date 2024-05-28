@@ -21,12 +21,14 @@ public class PlayerController : MonoBehaviour
     public void OnClickHitButton()
     {
         Debug.Log("Hit");
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         _game.Hit();
     }
 
     public void OnClickStandButton()
     {
         Debug.Log("Stand");
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         _game.Stand();
     }
 }

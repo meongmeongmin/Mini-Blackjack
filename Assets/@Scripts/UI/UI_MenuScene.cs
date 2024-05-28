@@ -18,12 +18,14 @@ public class UI_MenuScene : MonoBehaviour
 
     public void OnClickStartButton()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         SceneManager.LoadScene("GameScene");
     }
 
     public void OnClickExitButton()
     {
         Debug.Log("Game Exit");
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         Application.Quit();
     }
 }

@@ -117,6 +117,7 @@ public class UI_GameScene : MonoBehaviour
 
     void HandleGameEnded()
     {
+        Managers.Sound.Play(Define.Sound.Effect, "PopupOpen_Menu");
         UI_MenuPopup.SetActive(true);
     }
 }

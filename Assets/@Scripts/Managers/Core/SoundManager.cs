@@ -43,14 +43,14 @@ public class SoundManager
     public void Play(Define.Sound type, string key, float pitch = 1.0f)
     {
         AudioSource audioSource = _audioSources[(int)type];
-        audioSource.Play();
 
         if (type == Define.Sound.Bgm)
         {
             LoadAudioClip(key, (audioClip) =>
             {
                 if (audioSource.isPlaying)
-                    audioSource.Stop();
+                    return;
+                    // audioSource.Stop();
 
                 audioSource.clip = audioClip;
                 audioSource.Play();
@@ -64,7 +64,7 @@ public class SoundManager
                 audioSource.PlayOneShot(audioClip);
             });
         }
-    }
+     }
 
     void LoadAudioClip(string key, Action<AudioClip> callback)
     {
@@ -77,7 +77,7 @@ public class SoundManager
 
         audioClip = Managers.Resource.Load<AudioClip>(key);
 
-        if (!_audioClips.ContainsKey(key))
+        if (_audioClips.ContainsKey(key) == false)
             _audioClips.Add(key, audioClip);
 
         callback?.Invoke(audioClip);

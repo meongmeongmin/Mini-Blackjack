@@ -37,12 +37,14 @@ public class UI_MenuPopup : MonoBehaviour
     public void OnClickRestartButton()
     {
         Debug.Log("Restart");
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         SceneManager.LoadScene("GameScene");
     }
 
     public void OnClickExitButton()
     {
         Debug.Log("Game Exit");
+        Managers.Sound.Play(Define.Sound.Effect, "Click_CommonButton");
         Application.Quit();
     }
 }
