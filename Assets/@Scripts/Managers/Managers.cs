@@ -16,6 +16,8 @@ public class Managers : MonoBehaviour
     public static ResourceManager Resource { get { return Instance?._resource; } }
     PoolManager _pool = new PoolManager();
     public static PoolManager Pool { get { return Instance?._pool; } }
+    SoundManager _sound = new SoundManager();
+    public static SoundManager Sound { get { return Instance?._sound; } }
 
     static void Init()
     {

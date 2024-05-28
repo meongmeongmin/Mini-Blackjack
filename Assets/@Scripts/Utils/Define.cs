@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Define
+public static class Define
 {
     public enum GameState   // 게임 상태
     {
@@ -26,5 +26,12 @@ public class Define
         Heart,
         Diamond,
         Clover,
+    }
+
+    public enum Sound
+    {
+        Bgm,
+        Effect,
+        Max,
     }
 }
